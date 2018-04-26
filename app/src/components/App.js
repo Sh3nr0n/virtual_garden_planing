@@ -7,6 +7,9 @@ import { Header} from './Header';
 import { Home} from './Home';
 
 //Create a new class from the basic react component class (Component), "extends" allows to re-use this component and to modify it
+
+// End of file : expoert allows to export the component and to re-use it somewhere else
+
 class App extends React.Component {
   //Calls the render method inherited from the react Component class
   render() {
