@@ -14,52 +14,58 @@ import { Row, Col, Button } from 'react-materialize';
 
 //Import the image background for each column of a garden line
 import ground from './ground.png';
+
+//Create an image tag with the "ground" component
 const colBackground = <img src={ground} alt="groundImage" />;
 
-//Create a component and set it up as a property (by calling the "props" method) of the class it will be called in. Parentheses are optional for arrow functions "()=>"" when there's only one parameter name. As we return an expression the parentheses are not mandatory after the arrow function, however it helps the understanding of the code. 
-
-
-//Buttons : Add an event listener with onClick (JS) and link it to the property (props) of its component e.g. the ParentComponent which posesses the "addChild" and "removeChild" proerties which are linked to the function to call on click
-
-
-
-//For testing purpose : Add a js expression with {} to display the number property of the corresponding child
-
-
 export class Line extends React.Component {
-    // Initial state of the class/object, we set up a class/property called "numChildren" equal to 0
-    constructor(props) {
+    //Use the constructor() method from React to create a specific property of the class
+    constructor() {
+        //Use the method super() to execute the parent constructor and inherit properties and methods from the React.Component
         super();
+        // Create a new property named state to fix the initial state of the object
         this.state = {
-            numChildren: 0
+            // Set up a property called "numLine" equal to 0
+            numLine: 0
         };
     }
 
-    onAddChild = () => {
-        //Calls the setState method (from React) to set a new state (update) to "numChildren" (or whatever to be changed in the object) whenever the "onAddChild" function is called. Each time the setState method is called React will re-render the UI with the new state
+    //Create two methods to add and remove a child element
+
+    onAddLine = () => {
+
+        //Calls the setState method (from React) to set a new state (update) to "numLine" (or whatever to be changed in the object) whenever the "onAddLine" method is called
+
+        // Each time the setState method is called React will re-render the UI with the new state
         this.setState({
-            numChildren: this.state.numChildren + 1
+            numLine: this.state.numLine + 1
         });
     }
 
-    onRemoveChild = () => {
+    onRemoveLine = () => {
         this.setState({
-            numChildren: this.state.numChildren - 1
+            numLine: this.state.numLine - 1
         });
     }
 
     render() {
 
         //A const can't be declared twice in the same block nor change its value after it has been declared, however we can add an element to an array declared with "const" e.g. the []
-        //Create a children variable
-        const children = [];
 
-        //Iterate the state numChildren of the current object 
-        for (let i = 0; i < this.state.numChildren; i += 1) {
-            //React good practices : each property displayed must receive a key so that React is able to uniquely identify it, it enhances React performances (delete key for demo)
-            //Push an element to the children variable, pass a new key and number to each new element to render, the new element is created from a component declared outside of the class
-            children.push(
-                <div key={i} number={i}>
+        //Create a "newLines" variable containing an array of element to render
+        const newLines = [];
+        
+        //React good practices : each property displayed must receive a key so that React is able to uniquely identify it, it enhances React performances (delete key for demo)
+
+        //Add a state "key" to "numLine" to the "newLines" object 
+        for (let i = 0; i < this.state.numLine; i += 1) {
+            
+            //Push a new element into the "newLines" variable, pass a new key to each new element to render
+
+            //For testing purpose : Add a js expression with {} to display the number property of the corresponding child
+
+            newLines.push(
+                <div key={i}>
                     <Row>
                         <Col s={1} className='grid-example'>{colBackground}</Col>
                         <Col s={1} className='grid-example'>{colBackground}</Col>
@@ -71,7 +77,7 @@ export class Line extends React.Component {
                         <Col s={1} className='grid-example'>{colBackground}</Col>
                         <Col s={1} className='grid-example'>{colBackground}</Col>
                         <Col s={1} className='grid-example'>{colBackground}</Col>
-                        <Col s={2} className='grid-example'>{"Ligne n°" + this.number}</Col>
+                        <Col s={2} className='grid-example'>{"Ligne n°" + i}</Col>
                     </Row>
                 </div>
             );
@@ -79,7 +85,11 @@ export class Line extends React.Component {
 
         //
         return (
-            //Return the parent element declared outside of the class and pass it 2 states, Pass 2 properties to the element (addChild and removeChild) and link them to the corresponding functions, this refers to the direct parent element e.g. "ParentComponent", then insert the child component into the parent component
+            //Return the main element e.g. the first line of the garden with 2 buttons
+          
+            //Buttons : Add an event listener with onClick (JS) and link it to the the corresponding method ("onAddLine" and "onRemoveLine") that we call with arrow functions
+         
+            //Then display the child component into the next div with {newLines}
             <div>
                 <Row>
                     <Col s={1} className='grid-example'>{colBackground}</Col>
@@ -94,14 +104,14 @@ export class Line extends React.Component {
                     <Col s={1} className='grid-example'>{colBackground}</Col>
                     <Col s={2} className='grid-example'>
 
-                        <Button className="btn-floating btn-large waves-effect waves-light red" onClick={() => this.onAddChild()}><i className="material-icons">add</i>
+                        <Button className="btn-floating btn-large waves-effect waves-light red" onClick={() => this.onAddLine()}><i className="material-icons">add</i>
                         </Button>
-                        <Button className="btn-floating btn-large waves-effect waves-light yellow" onClick={() => this.onRemoveChild()}><i className="material-icons">remove</i>
+                        <Button className="btn-floating btn-large waves-effect waves-light yellow" onClick={() => this.onRemoveLine()}><i className="material-icons">remove</i>
                         </Button>
                     </Col>
                 </Row>
                 <div>
-                    {children}
+                    {newLines}
                 </div>
             </div>
 
