@@ -67,17 +67,17 @@ export class Line extends React.Component {
             newLines.push(
                 <div key={i}>
                     <Row>
-                        <Col s={1} className='grid-example'>{colBackground}</Col>
-                        <Col s={1} className='grid-example'>{colBackground}</Col>
-                        <Col s={1} className='grid-example'>{colBackground}</Col>
-                        <Col s={1} className='grid-example'>{colBackground}</Col>
-                        <Col s={1} className='grid-example'>{colBackground}</Col>
-                        <Col s={1} className='grid-example'>{colBackground}</Col>
-                        <Col s={1} className='grid-example'>{colBackground}</Col>
-                        <Col s={1} className='grid-example'>{colBackground}</Col>
-                        <Col s={1} className='grid-example'>{colBackground}</Col>
-                        <Col s={1} className='grid-example'>{colBackground}</Col>
-                        <Col s={2} className='grid-example'>{"Ligne n°" + i}</Col>
+                        <Col s={1} >{colBackground}</Col>
+                        <Col s={1} >{colBackground}</Col>
+                        <Col s={1} >{colBackground}</Col>
+                        <Col s={1} >{colBackground}</Col>
+                        <Col s={1} >{colBackground}</Col>
+                        <Col s={1} >{colBackground}</Col>
+                        <Col s={1} >{colBackground}</Col>
+                        <Col s={1} >{colBackground}</Col>
+                        <Col s={1} >{colBackground}</Col>
+                        <Col s={1} >{colBackground}</Col>
+                        <Col s={2} >{"Ligne n°" + i}</Col>
                     </Row>
                 </div>
             );
@@ -93,16 +93,16 @@ export class Line extends React.Component {
             <div>
                 <Row>
                     <Col s={1} className='grid-example'>{colBackground}</Col>
-                    <Col s={1} className='grid-example'>{colBackground}</Col>
-                    <Col s={1} className='grid-example'>{colBackground}</Col>
-                    <Col s={1} className='grid-example'>{colBackground}</Col>
-                    <Col s={1} className='grid-example'>{colBackground}</Col>
-                    <Col s={1} className='grid-example'>{colBackground}</Col>
-                    <Col s={1} className='grid-example'>{colBackground}</Col>
-                    <Col s={1} className='grid-example'>{colBackground}</Col>
-                    <Col s={1} className='grid-example'>{colBackground}</Col>
-                    <Col s={1} className='grid-example'>{colBackground}</Col>
-                    <Col s={2} className='grid-example'>
+                    <Col s={1} >{colBackground}</Col>
+                    <Col s={1} >{colBackground}</Col>
+                    <Col s={1} >{colBackground}</Col>
+                    <Col s={1} >{colBackground}</Col>
+                    <Col s={1} >{colBackground}</Col>
+                    <Col s={1} >{colBackground}</Col>
+                    <Col s={1} >{colBackground}</Col>
+                    <Col s={1} >{colBackground}</Col>
+                    <Col s={1} >{colBackground}</Col>
+                    <Col s={2} >
 
                         <Button className="btn-floating btn-large waves-effect waves-light red" onClick={() => this.onAddLine()}><i className="material-icons">add</i>
                         </Button>
