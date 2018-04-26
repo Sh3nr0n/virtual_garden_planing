@@ -21,5 +21,4 @@ class App extends React.Component {
   }
 }
 
-{/* Allows to export the component and to re-use it somewhere else*/}
 export default App;
