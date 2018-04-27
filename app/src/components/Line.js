@@ -2,8 +2,11 @@
 //Done: Create a component containing one line
 //Done: Create buttons to add or delete a new line in the garden
 //Done: Add the "add" and "delete" buttons in the latest added line and make them dispear from the previous line
-//Done :Show the "delete" button when there is at least one line in the view (this.state >0)
+//Done :Show the "delete" button when there is at least one line in the view (this.state >0), use of a ternary operator "?"" to display the "removeButton" or to hide it 
 //Done: Change the ground image
+//Done : Create a vegetable test object
+//Done : Add a <Modal/> component to call on click on a line
+//Done : Use the map() method to loop through this object and display them on a modal element
 //To Do: Add animations + sounds around the garden area
 //To Do: Maybe in another component : add a fruit/vegetable onClick on a line
 //######################
@@ -31,7 +34,6 @@ export class Line extends React.Component {
         this.state = {
             // Set up a property called "numLine" equal to 0
             numLine: 0,
-            showDelete: false
         };
     }
 
@@ -56,7 +58,7 @@ export class Line extends React.Component {
 
     render() {
 
-        console.log("numline = ", this.state.numLine < 1);
+        console.log("Hide delete button : ", this.state.numLine < 1);
 
 
         //A const can't be declared twice in the same block nor change its value after it has been declared, however we can add an element to an array declared with "const" e.g. the []
@@ -91,7 +93,7 @@ export class Line extends React.Component {
                 <img src={vegetable.img} alt={"Image_" + vegetable.id} />{vegetable.name}
             </li>));
 
-        console.log(vegetableNames);
+        console.log("tableau légumes : ",vegetableNames);
 
         //Delete button
 
@@ -102,9 +104,7 @@ export class Line extends React.Component {
 
         //##########################
         //A terme : Créer un nouveau composant de type modale pour afficher une liste de légumes
-        //Done : créer un objet const legumes = []; entrer les valeurs test
-        //Done : faire une fonction map pour afficher la liste des propositions dans la modale
-        //To Do : Au click sur un légume, l'afficher dans une ligne
+       //To Do : Au click sur un légume, l'afficher dans une ligne
 
         //Test : Ajouter un event onclick + test console
         // onClick={() => console.log('click')}
@@ -120,7 +120,7 @@ export class Line extends React.Component {
         //Add a state "key" to "numLine" to the "newLines" object 
         for (let i = 0; i < this.state.numLine; i += 1) {
 
-            console.log(this.state.numLine);
+            console.log("ligne n°",this.state.numLine);
 
             //Push a new element (object) into the "newLines" variable, pass a new key to each new element to render
 
@@ -140,7 +140,7 @@ export class Line extends React.Component {
             );
         };
 
-        console.log(newLines);
+        // console.log(newLines);
 
         //
         return (
@@ -156,14 +156,12 @@ export class Line extends React.Component {
                     {this.state.numLine >0 ? removeButton: null}
                     <Button className="btn-floating right btn-large waves-effect waves-light red" onClick={() => this.onAddLine()}><i className="material-icons">add</i>
                     </Button>
-                    <Modal
-                        id='addVegModal'
-                        header='Sélectionnez un légume'>
+                </div>
+                <Modal id='addVegModal' header='Sélectionnez un légume'>
                         <ul>
                             {vegetableNames}
                         </ul>
                     </Modal>
-                </div>
             </div>
 
         );
