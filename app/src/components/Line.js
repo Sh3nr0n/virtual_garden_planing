@@ -2,6 +2,7 @@
 //Done: Create a component containing one line
 //Done: Create buttons to add or delete a new line in the garden
 //To Do: Add the "add" and "delete" buttons in the latest added line and make them dispear from the previous line
+//Utiliser Array map pour remplacer la boucle for (recherches)
 //To Do: Change the ground image
 //To Do: Add animations + sounds around the garden area
 //To Do: Maybe in another component : add a fruit/vegetable onClick on a line
@@ -93,16 +94,16 @@ export class Line extends React.Component {
             <div>
                 <Row>
                     <Col s={1} className='grid-example'>{colBackground}</Col>
-                    <Col s={1} >{colBackground}</Col>
-                    <Col s={1} >{colBackground}</Col>
-                    <Col s={1} >{colBackground}</Col>
-                    <Col s={1} >{colBackground}</Col>
-                    <Col s={1} >{colBackground}</Col>
-                    <Col s={1} >{colBackground}</Col>
-                    <Col s={1} >{colBackground}</Col>
-                    <Col s={1} >{colBackground}</Col>
-                    <Col s={1} >{colBackground}</Col>
-                    <Col s={2} >
+                    <Col s={1}>{colBackground}</Col>
+                    <Col s={1}>{colBackground}</Col>
+                    <Col s={1}>{colBackground}</Col>
+                    <Col s={1}>{colBackground}</Col>
+                    <Col s={1}>{colBackground}</Col>
+                    <Col s={1}>{colBackground}</Col>
+                    <Col s={1}>{colBackground}</Col>
+                    <Col s={1}>{colBackground}</Col>
+                    <Col s={1}>{colBackground}</Col>
+                    <Col s={2}>
 
                         <Button className="btn-floating btn-large waves-effect waves-light red" onClick={() => this.onAddLine()}><i className="material-icons">add</i>
                         </Button>
