@@ -2,7 +2,8 @@
 //Done: Create a component containing one line
 //Done: Create buttons to add or delete a new line in the garden
 //Done: Add the "add" and "delete" buttons in the latest added line and make them dispear from the previous line
-//To Do: Change the ground image
+//Done :Show the "delete" button when there is at least one line in the view (this.state >0)
+//Done: Change the ground image
 //To Do: Add animations + sounds around the garden area
 //To Do: Maybe in another component : add a fruit/vegetable onClick on a line
 //######################
@@ -29,7 +30,8 @@ export class Line extends React.Component {
         // Create a new property named state to fix the initial state of the object
         this.state = {
             // Set up a property called "numLine" equal to 0
-            numLine: 0
+            numLine: 0,
+            showDelete: false
         };
     }
 
@@ -54,42 +56,50 @@ export class Line extends React.Component {
 
     render() {
 
+        console.log("numline = ", this.state.numLine < 1);
+
+
         //A const can't be declared twice in the same block nor change its value after it has been declared, however we can add an element to an array declared with "const" e.g. the []
 
         //Create an image tag with the "ground" component (e.g. the image to render)
         const colBackground = <a className="modal-triger responsive-img" href="#addVegModal"><img src={ground} alt="groundImage" /></a>;
 
-        // onClick={() => this.getVegetables()}
+        // Vegetable objects
 
         const vegetables = [{
-            id:1,
-            name:'tomate',
-            img:tomatImg
-        },{
-            id:2,
-            name:'carotte',
-            img:carotImg
-        },{
-            id:3,
-            name:'aubergine',
-            img:auberImg
+            id: 1,
+            name: 'tomate',
+            img: tomatImg
+        }, {
+            id: 2,
+            name: 'carotte',
+            img: carotImg
+        }, {
+            id: 3,
+            name: 'aubergine',
+            img: auberImg
 
-        },{
-            id:4,
-            name:'radis',
-            img:radisImg
+        }, {
+            id: 4,
+            name: 'radis',
+            img: radisImg
 
         }];
 
-        const vegetableNames = vegetables.map(((vegetable,i) => 
-        <li key={i}>
-            <img src={vegetable.img} alt={"Image_"+vegetable.id} />{vegetable.name}
-        </li>));
+        const vegetableNames = vegetables.map(((vegetable, i) =>
+            <li key={i}>
+                <img src={vegetable.img} alt={"Image_" + vegetable.id} />{vegetable.name}
+            </li>));
 
         console.log(vegetableNames);
 
+        //Delete button
 
-        
+        const removeButton = <Button className="btn-floating right btn-large waves-effect waves-light yellow" onClick={() => this.onRemoveLine()}><i className="material-icons">remove</i>
+        </Button>
+
+
+
         //##########################
         //A terme : Créer un nouveau composant de type modale pour afficher une liste de légumes
         //Done : créer un objet const legumes = []; entrer les valeurs test
@@ -118,13 +128,13 @@ export class Line extends React.Component {
 
             newLines.push(
                 <div key={i}>
-                    <Row style={{backgroundColor:'brown'}}>
-                    <Col s={2} m={2}>{colBackground}</Col>
-                    <Col s={2} m={2}>{colBackground}</Col>
-                    <Col s={2} m={2}>{colBackground}</Col>
-                    <Col s={2} m={2}>{colBackground}</Col>
-                    <Col s={2} m={2}>{colBackground}</Col>
-                    <Col s={2} m={2}>{colBackground}</Col>
+                    <Row style={{ backgroundColor: 'brown' }}>
+                        <Col s={2} m={2}>{colBackground}</Col>
+                        <Col s={2} m={2}>{colBackground}</Col>
+                        <Col s={2} m={2}>{colBackground}</Col>
+                        <Col s={2} m={2}>{colBackground}</Col>
+                        <Col s={2} m={2}>{colBackground}</Col>
+                        <Col s={2} m={2}>{colBackground}</Col>
                     </Row>
                 </div>
             );
@@ -140,11 +150,10 @@ export class Line extends React.Component {
 
             //Then display the newLines object into the next div with {newLines}
             <div>
-                <br/>
+                <br />
                 <div>
                     {newLines}
-                    <Button className="btn-floating right btn-large waves-effect waves-light yellow" onClick={() => this.onRemoveLine()}><i className="material-icons">remove</i>
-                    </Button>
+                    {this.state.numLine >0 ? removeButton: null}
                     <Button className="btn-floating right btn-large waves-effect waves-light red" onClick={() => this.onAddLine()}><i className="material-icons">add</i>
                     </Button>
                     <Modal
