@@ -7,6 +7,9 @@
 //Done : Create a vegetable test object
 //Done : Add a <Modal/> component to call on click on a line
 //Done : Use the map() method to loop through this object and display them on a modal element
+//Done : On click on a vegetable from modal, add it into the lines
+//To Do : On click on a vegetable from modal, add it into the specific line it was clicked from
+//To Do: Refactorize this component into several components
 //To Do: Add animations + sounds around the garden area
 //To Do: Maybe in another component : add a fruit/vegetable onClick on a line
 //######################
@@ -27,13 +30,14 @@ import radisImg from '../ico_img/icons8-radis-48.png';
 
 export class Line extends React.Component {
     //Use the constructor() method from React to create a specific property of the class
-    constructor() {
+    constructor(props) {
         //Use the method super() to execute the parent constructor and inherit properties and methods from the React.Component
-        super();
+        super(props);
         // Create a new property named state to fix the initial state of the object
         this.state = {
             // Set up a property called "numLine" equal to 0
             numLine: 0,
+            caseLine:ground
         };
     }
 
@@ -54,6 +58,15 @@ export class Line extends React.Component {
             numLine: this.state.numLine - 1
         });
     }
+    
+    onAddVegetable =(name,id,img) =>{
+        this.setState({
+            caseLine:img
+        });
+        console.log('you clicked on a vegetable!'+name+ id +img);
+        console.log('this.state.caseLine : ',this.state.caseLine);
+        
+    }
 
     render() {
 
@@ -62,14 +75,17 @@ export class Line extends React.Component {
         //A const can't be declared twice in the same block nor change its value after it has been declared, however we can add an element to an array declared with "const" e.g. the []
 
         //Create an image tag with the "ground" component (e.g. the image to render)
-        const colBackground = <a className="modal-triger responsive-img" href="#addVegModal"><img src={ground} alt="groundImage" /></a>;
+        const colBackground = <a className="modal-triger responsive-img" href="#addVegModal"><img src={this.state.caseLine} alt="groundImage" /></a>;
+
+        
 
         // Vegetable objects
 
         const vegetables = [{
             id: 1,
             name: 'tomate',
-            img: tomatImg
+            img: tomatImg,
+            src: '../ico_img/icons8-tomate-48.png'
         }, {
             id: 2,
             name: 'carotte',
@@ -88,7 +104,7 @@ export class Line extends React.Component {
 
         const vegetableNames = vegetables.map(((vegetable, i) =>
             <li key={i}>
-                <img src={vegetable.img} alt={"Image_" + vegetable.id} onClick={()=>console.log('you clicked on a vegetable!')}/>{vegetable.name}
+                <img src={vegetable.img} alt={"Image_" + vegetable.id} name={vegetable.name} onClick={()=> this.onAddVegetable(vegetable.name,vegetable.id,vegetable.img)}/>{vegetable.name}
             </li>));
 
         console.log("tableau légumes : ",vegetableNames);
@@ -97,17 +113,6 @@ export class Line extends React.Component {
 
         const removeButton = <Button className="btn-floating right btn-large waves-effect waves-light yellow" onClick={() => this.onRemoveLine()}><i className="material-icons">remove</i>
         </Button>
-
-
-
-        //##########################
-        //A terme : Créer un nouveau composant de type modale pour afficher une liste de légumes
-        //To Do : Au click sur un légume, l'afficher dans une ligne
-        //Test : Ajouter un event onclick + test console
-        // onClick={() => console.log('click')}
-
-        //##########################
-
 
         //Create a "newLines" variable containing an array of element to render
         const newLines = [];
