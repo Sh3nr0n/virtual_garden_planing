@@ -90,7 +90,7 @@ export class Line extends React.Component {
           
             //Buttons : Add an event listener with onClick (JS) and link it to the the corresponding method ("onAddLine" and "onRemoveLine") that we call with arrow functions
          
-            //Then display the child component into the next div with {newLines}
+            //Then display the newLines object into the next div with {newLines}
             <div>
                 <Row>
                     <Col s={1} className='grid-example'>{colBackground}</Col>
