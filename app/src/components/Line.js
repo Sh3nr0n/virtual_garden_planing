@@ -55,11 +55,9 @@ export class Line extends React.Component {
         });
     }
 
-
     render() {
 
         console.log("Hide delete button : ", this.state.numLine < 1);
-
 
         //A const can't be declared twice in the same block nor change its value after it has been declared, however we can add an element to an array declared with "const" e.g. the []
 
@@ -90,7 +88,7 @@ export class Line extends React.Component {
 
         const vegetableNames = vegetables.map(((vegetable, i) =>
             <li key={i}>
-                <img src={vegetable.img} alt={"Image_" + vegetable.id} />{vegetable.name}
+                <img src={vegetable.img} alt={"Image_" + vegetable.id} onClick={()=>console.log('you clicked on a vegetable!')}/>{vegetable.name}
             </li>));
 
         console.log("tableau légumes : ",vegetableNames);
@@ -104,8 +102,7 @@ export class Line extends React.Component {
 
         //##########################
         //A terme : Créer un nouveau composant de type modale pour afficher une liste de légumes
-       //To Do : Au click sur un légume, l'afficher dans une ligne
-
+        //To Do : Au click sur un légume, l'afficher dans une ligne
         //Test : Ajouter un event onclick + test console
         // onClick={() => console.log('click')}
 
