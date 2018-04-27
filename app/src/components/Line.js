@@ -31,7 +31,7 @@ export class Line extends React.Component {
         };
     }
 
-    //Create two methods to add and remove a child element
+    //Create two methods to add and remove an element (e.g a line)
 
     onAddLine = () => {
 
@@ -60,10 +60,12 @@ export class Line extends React.Component {
 
         //Add a state "key" to "numLine" to the "newLines" object 
         for (let i = 0; i < this.state.numLine; i += 1) {
+
+            console.log(this.state.numLine);
             
             //Push a new element (object) into the "newLines" variable, pass a new key to each new element to render
 
-            //For testing purpose : Add a js expression with {} to display the number property of the corresponding child
+            //For testing purpose : Add a js expression with {} to display the key property of the corresponding line
 
             newLines.push(
                 <div key={i}>
@@ -83,6 +85,8 @@ export class Line extends React.Component {
                 </div>
             );
         };
+
+        console.log(newLines);
 
         //
         return (
