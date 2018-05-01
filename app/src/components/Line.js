@@ -159,11 +159,6 @@ export class Line extends React.Component {
                     <Button className="btn-floating right btn-large waves-effect waves-light red" onClick={() => this.onAddLine()}><i className="material-icons">add</i>
                     </Button>
                 </div>
-                <Modal id='addVegModal' header='Sélectionnez un légume'>
-                        <ul>
-                            {vegetableNames}
-                        </ul>
-                    </Modal>
             </div>
 
         );
