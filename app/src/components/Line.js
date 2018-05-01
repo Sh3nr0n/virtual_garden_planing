@@ -17,16 +17,9 @@
 import React from 'react';
 
 //Import components row, columns and button from react-materialize
-import { Row, Col, Button, Modal } from 'react-materialize';
+import { Row, Col, Button} from 'react-materialize';
 
-//Import the image background for each column of a garden line
-import ground from '../ico_img/icons8-vagues-filled-50.png';
-import tomatImg from '../ico_img/icons8-tomate-48.png';
-import carotImg from '../ico_img/icons8-carotte-48.png';
-import auberImg from '../ico_img/icons8-aubergine-48.png';
-import radisImg from '../ico_img/icons8-radis-48.png';
-
-
+import {ImageLink} from './ImageLink';
 
 export class Line extends React.Component {
     //Use the constructor() method from React to create a specific property of the class
@@ -37,7 +30,6 @@ export class Line extends React.Component {
         this.state = {
             // Set up a property called "numLine" equal to 0
             numLine: 0,
-            caseLine:ground
         };
     }
 
@@ -58,56 +50,12 @@ export class Line extends React.Component {
             numLine: this.state.numLine - 1
         });
     }
-    
-    onAddVegetable =(name,id,img) =>{
-        this.setState({
-            caseLine:img
-        });
-        console.log('you clicked on a vegetable!'+name+ id +img);
-        console.log('this.state.caseLine : ',this.state.caseLine);
-        
-    }
 
     render() {
 
         console.log("Hide delete button : ", this.state.numLine < 1);
 
         //A const can't be declared twice in the same block nor change its value after it has been declared, however we can add an element to an array declared with "const" e.g. the []
-
-        //Create an image tag with the "ground" component (e.g. the image to render)
-        const colBackground = <a className="modal-triger responsive-img" href="#addVegModal"><img src={this.state.caseLine} alt="groundImage" /></a>;
-
-        
-
-        // Vegetable objects
-
-        const vegetables = [{
-            id: 1,
-            name: 'tomate',
-            img: tomatImg,
-            src: '../ico_img/icons8-tomate-48.png'
-        }, {
-            id: 2,
-            name: 'carotte',
-            img: carotImg
-        }, {
-            id: 3,
-            name: 'aubergine',
-            img: auberImg
-
-        }, {
-            id: 4,
-            name: 'radis',
-            img: radisImg
-
-        }];
-
-        const vegetableNames = vegetables.map(((vegetable, i) =>
-            <li key={i}>
-                <img src={vegetable.img} alt={"Image_" + vegetable.id} name={vegetable.name} onClick={()=> this.onAddVegetable(vegetable.name,vegetable.id,vegetable.img)}/>{vegetable.name}
-            </li>));
-
-        console.log("tableau légumes : ",vegetableNames);
 
         //Delete button
 
@@ -131,12 +79,12 @@ export class Line extends React.Component {
             newLines.push(
                 <div key={i}>
                     <Row style={{ backgroundColor: 'brown' }}>
-                        <Col s={2} m={2}>{colBackground}</Col>
-                        <Col s={2} m={2}>{colBackground}</Col>
-                        <Col s={2} m={2}>{colBackground}</Col>
-                        <Col s={2} m={2}>{colBackground}</Col>
-                        <Col s={2} m={2}>{colBackground}</Col>
-                        <Col s={2} m={2}>{colBackground}</Col>
+                        <Col s={2} m={2}><ImageLink/></Col>
+                        <Col s={2} m={2}><ImageLink/></Col>
+                        <Col s={2} m={2}><ImageLink/></Col>
+                        <Col s={2} m={2}><ImageLink/></Col>
+                        <Col s={2} m={2}><ImageLink/></Col>
+                        <Col s={2} m={2}><ImageLink/></Col>
                     </Row>
                 </div>
             );
@@ -144,7 +92,6 @@ export class Line extends React.Component {
 
         // console.log(newLines);
 
-        //
         return (
             //Return the main element e.g. the first line of the garden with 2 buttons
 
@@ -159,11 +106,7 @@ export class Line extends React.Component {
                     <Button className="btn-floating right btn-large waves-effect waves-light red" onClick={() => this.onAddLine()}><i className="material-icons">add</i>
                     </Button>
                 </div>
-                <Modal id='addVegModal' header='Sélectionnez un légume'>
-                        <ul>
-                            {vegetableNames}
-                        </ul>
-                    </Modal>
+                
             </div>
 
         );
