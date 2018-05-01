@@ -6,6 +6,10 @@ import { Modal } from 'react-materialize';
 
 
 export class VegetableNames extends React.Component {
+
+    onAddVegetable = () => {
+        
+    }
     
     render() {
                            
@@ -13,7 +17,7 @@ export class VegetableNames extends React.Component {
 
             <Modal id='addVegModal' header='Sélectionnez un légume'>
                 <ul>
-                VegNameList.map(((vegetable, i) =>
+                this.props.VegNameList.map(((vegetable, i) =>
                 <li key={i}>
                     <img src={vegetable.img} alt={"Image_" + vegetable.id} name={vegetable.name} onClick={()=> this.onAddVegetable(vegetable.name,vegetable.id,vegetable.img)}/>{vegetable.name}
                 </li>))
