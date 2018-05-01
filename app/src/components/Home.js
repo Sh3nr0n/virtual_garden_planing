@@ -1,7 +1,7 @@
 import React from 'react';
-import {Line} from './Line';
-import {Container} from 'react-materialize';
-import {VegetableNames} from './VegetableNames';
+import { Line } from './Line';
+import { Container, Modal } from 'react-materialize';
+import { VegetableNames } from './VegetableNames';
 
 //Import the image background for each column of a garden line
 import ground from '../ico_img/icons8-vagues-filled-50.png';
@@ -11,8 +11,8 @@ import auberImg from '../ico_img/icons8-aubergine-48.png';
 import radisImg from '../ico_img/icons8-radis-48.png';
 
 
-export class Home extends React.Component{
-    render(){
+export class Home extends React.Component {
+    render() {
 
         // Vegetable objects:
         const vegetables = [{
@@ -36,15 +36,19 @@ export class Home extends React.Component{
 
         }];
 
-        console.log("VegNameList : ",vegetables);
+        console.log("VegNameList : ", vegetables);
 
 
-        return(
+        return (
             <div>
-            <Container>
-                <Line/>
-            </Container>
-            <VegetableNames VegNameList={vegetables}/>
+                <Container>
+                    <Line />
+                </Container>
+                <Modal id="addVegModal">
+                    <ul>
+                        <VegetableNames VegNameList={vegetables} />
+                    </ul>
+                </Modal>
             </div>
         );
     }

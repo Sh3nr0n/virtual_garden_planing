@@ -77,37 +77,6 @@ export class Line extends React.Component {
         //Create an image tag with the "ground" component (e.g. the image to render)
         const colBackground = <a className="modal-triger responsive-img" href="#addVegModal"><img src={this.state.caseLine} alt="groundImage" /></a>;
 
-        
-
-        // Vegetable objects
-
-        const vegetables = [{
-            id: 1,
-            name: 'tomate',
-            img: tomatImg,
-            src: '../ico_img/icons8-tomate-48.png'
-        }, {
-            id: 2,
-            name: 'carotte',
-            img: carotImg
-        }, {
-            id: 3,
-            name: 'aubergine',
-            img: auberImg
-
-        }, {
-            id: 4,
-            name: 'radis',
-            img: radisImg
-
-        }];
-
-        const vegetableNames = vegetables.map(((vegetable, i) =>
-            <li key={i}>
-                <img src={vegetable.img} alt={"Image_" + vegetable.id} name={vegetable.name} onClick={()=> this.onAddVegetable(vegetable.name,vegetable.id,vegetable.img)}/>{vegetable.name}
-            </li>));
-
-        console.log("tableau légumes : ",vegetableNames);
 
         //Delete button
 
