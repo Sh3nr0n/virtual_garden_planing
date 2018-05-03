@@ -8,7 +8,7 @@
 //Done : Add a <Modal/> component to call on click on a line
 //Done : Use the map() method to loop through this object and display them on a modal element
 //Done : On click on a vegetable from modal, add it into the lines
-//To Do : On click on a vegetable from modal, add it into the specific line it was clicked from
+//Done : On click on a vegetable from modal, add it into the specific image it was clicked from
 //To Do: Refactorize this component into several components
 //To Do: Add animations + sounds around the garden area
 //To Do: Maybe in another component : add a fruit/vegetable onClick on a line
@@ -17,21 +17,9 @@
 import React from 'react';
 
 //Import components row, columns and button from react-materialize
-import { Row, Col, Button,Modal} from 'react-materialize';
+import { Row, Col, Button} from 'react-materialize';
 
 import { ImageLink } from './ImageLink';
-import { VegetableNames } from './VegetableNames';
-//Import the image background for each column of a garden line
-import tomatImg from '../ico_img/icons8-tomate-48.png';
-import carotImg from '../ico_img/icons8-carotte-48.png';
-import auberImg from '../ico_img/icons8-aubergine-48.png';
-import radisImg from '../ico_img/icons8-radis-48.png';
-import ground from '../ico_img/icons8-vagues-filled-50.png';
-
-
-
-
-
 
 export class Line extends React.Component {
     //Use the constructor() method from React to create a specific property of the class
@@ -42,7 +30,7 @@ export class Line extends React.Component {
         this.state = {
             // Set up a property called "numLine" equal to 0
             numLine: 0,
-            VegImage:ground
+            // VegImage: ground
 
         };
     }
@@ -66,44 +54,11 @@ export class Line extends React.Component {
         });
     }
 
-    onClickVegetable = (NewImage) => {
-        this.setState({
-            VegImage:NewImage
-            
-        });
-    }
-    
-  
     render() {
 
         console.log("Hide delete button : ", this.state.numLine < 1);
 
-
-        // Vegetable objects:
-        const vegetables = [{
-            id: 1,
-            name: 'tomate',
-            img: tomatImg,
-            src: '../ico_img/icons8-tomate-48.png'
-        }, {
-            id: 2,
-            name: 'carotte',
-            img: carotImg
-        }, {
-            id: 3,
-            name: 'aubergine',
-            img: auberImg
-
-        }, {
-            id: 4,
-            name: 'radis',
-            img: radisImg
-
-        }];
-
-        console.log("VegNameList : ", vegetables);
-
-        //Delete button
+         //Delete button
 
         const removeButton = <Button className="btn-floating right btn-large waves-effect waves-light yellow" onClick={() => this.onRemoveLine()}><i className="material-icons">remove</i>
         </Button>
@@ -117,7 +72,7 @@ export class Line extends React.Component {
         //Add a state "key" to "numLine" to the "newLines" object 
         for (let i = 0; i < this.state.numLine; i += 1) {
 
-            console.log("ligne n°",this.state.numLine);
+            console.log("ligne n°", this.state.numLine);
 
             //Push a new element (object) into the "newLines" variable, pass a new key to each new element to render
 
@@ -126,12 +81,12 @@ export class Line extends React.Component {
             newLines.push(
                 <div key={i}>
                     <Row style={{ backgroundColor: 'brown' }}>
-                        <Col s={2} m={2}><ImageLink VegImage={this.state.VegImage}/></Col>
-                        <Col s={2} m={2}><ImageLink VegImage={this.state.VegImage}/></Col>
-                        <Col s={2} m={2}><ImageLink VegImage={this.state.VegImage}/></Col>
-                        <Col s={2} m={2}><ImageLink VegImage={this.state.VegImage}/></Col>
-                        <Col s={2} m={2}><ImageLink VegImage={this.state.VegImage}/></Col>
-                        <Col s={2} m={2}><ImageLink VegImage={this.state.VegImage}/></Col>
+                        <Col s={2} m={2}><ImageLink identifier={'Col1Line'+i}/></Col>
+                        <Col s={2} m={2}><ImageLink identifier={'Col2Line'+i}/></Col>
+                        <Col s={2} m={2}><ImageLink identifier={'Col3Line'+i}/></Col>
+                        <Col s={2} m={2}><ImageLink identifier={'Col4Line'+i}/></Col>
+                        <Col s={2} m={2}><ImageLink identifier={'Col5Line'+i}/></Col>
+                        <Col s={2} m={2}><ImageLink identifier={'Col6Line'+i}/></Col>
                     </Row>
                 </div>
             );
@@ -150,19 +105,10 @@ export class Line extends React.Component {
                 <br />
                 <div>
                     {newLines}
-                    {this.state.numLine >0 ? removeButton: null}
+                    {this.state.numLine > 0 ? removeButton : null}
                     <Button className="btn-floating right btn-large waves-effect waves-light red" onClick={() => this.onAddLine()}><i className="material-icons">add</i>
                     </Button>
                 </div>
-                <Modal id="addVegModal">
-                    <ul>
-                        <VegetableNames 
-                        VegNameList={vegetables}
-                        VegImage={this.state.VegImage} 
-                        selectVegetable={()=>this.onClickVegetable()}
-                        />
-                    </ul>
-                </Modal>
             </div>
 
         );
