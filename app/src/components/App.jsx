@@ -2,8 +2,8 @@
 import React, { Fragment } from 'react';
 
 //import the Header object from the Header.js component
-import Header from './Header.jsx';
-import NewVegetableGarden from './NewVegetableGarden.jsx';
+import Header from './Header';
+import NewVegetableGarden from './NewVegetableGarden';
 
 //Create a new class from the basic react component class (Component), "extends" allows to re-use this component and to modify it
 

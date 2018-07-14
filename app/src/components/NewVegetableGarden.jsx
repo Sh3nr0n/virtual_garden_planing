@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react';
-import { Line } from './Line';
+import Line from './Line.jsx';
 import { withStyles } from '@material-ui/core/styles';
-import VegSelectionDialog from './VegSelectionDialog.jsx';
+import VegSelectionDialog from './VegSelectionDialog';
 import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
 
@@ -11,7 +11,6 @@ import carotImg from '../ico_img/icons8-carotte-48.png';
 import auberImg from '../ico_img/icons8-aubergine-48.png';
 import radisImg from '../ico_img/icons8-radis-48.png';
 
-// import ground from '../ico_img/icons8-vagues-filled-50.png';
 
 const styles = {
     styleToCreate: {
@@ -45,9 +44,6 @@ class NewVegetableGarden extends React.Component {
       };
 
     render() {
-
-        //Define the vegetable list needed for the Vegetable component
-        //Pass it as a props in the VegetableNames component with vegList={vegetables}
 
         const vegetables = [{
             id: 1,
