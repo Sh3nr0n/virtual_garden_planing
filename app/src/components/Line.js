@@ -103,7 +103,9 @@ export class Line extends React.Component {
                 <div>
                     {newLines}
                     {this.state.numLine >0 ? removeButton: null}
-                    <Button className="btn-floating right btn-large waves-effect waves-light red" onClick={() => this.onAddLine()}><i className="material-icons">add</i>
+                    <Button 
+                        className="btn-floating right btn-large waves-effect waves-light red"
+                        onClick={() => this.onAddLine()}><i className="material-icons">add</i>
                     </Button>
                 </div>
                 
