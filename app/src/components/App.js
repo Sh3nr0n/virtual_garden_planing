@@ -2,7 +2,7 @@
 import React from 'react';
 
 //import the Header object from the Header.js component
-import { Header} from './Header';
+import Header from './Header.jsx';
 //Import the Home object
 import { Home} from './Home';
 
