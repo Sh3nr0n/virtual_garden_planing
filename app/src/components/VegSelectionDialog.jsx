@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+  import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 
@@ -37,7 +37,7 @@ class VegSelectionDialog extends React.Component {
                 {vegList.map((vegetable, i) =>(
                     <ListItem 
                     button 
-                    onClick={() => this.handleListItemClick(vegetable.name)} 
+                    onClick={() => this.handleListItemClick(vegetable.img)} 
                     key={i}>
                         <ListItemText primary={vegetable.name} />
                         <img 

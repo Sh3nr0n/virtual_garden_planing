@@ -1,8 +1,12 @@
 import React, {Fragment} from 'react';
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 
 //Import the image background for each column of a garden line
-import ground from '../ico_img/icons8-vagues-filled-50.png';
+// import ground from '../ico_img/icons8-vagues-filled-50.png';
+// import tomatImg from '../ico_img/icons8-tomate-48.png';
+// import carotImg from '../ico_img/icons8-carotte-48.png';
+// import auberImg from '../ico_img/icons8-aubergine-48.png';
+// import radisImg from '../ico_img/icons8-radis-48.png';
 import { withStyles } from '@material-ui/core/styles';
 
 //Create an image tag with the "ground" component (e.g. the image to render)
@@ -21,30 +25,29 @@ class ImageLink extends React.Component {
         super(props);
         // Create a new property named state to fix the initial state of the object
         this.state = {
-            src:ground,
+            // src:ground,
             alt:'ground image'
         };
     }
 
-    updateColImage = (dataFromChild) => {
-        console.log('image src is : ', dataFromChild)
-        this.setState({
-            image:dataFromChild
-        });
-    }
+    // updateImageSrc = (dataFromParent) => {
+    //     console.log('image src is : ', dataFromParent)
+    //     this.setState({
+    //         src:dataFromParent
+    //     });
+    // }
 
 
         render(){
 
-            const {id} = this.props
+            const { id, src } = this.props
             
             return(
                 <Fragment>
                     <img
                         id={id} 
-                        src={this.state.src}
+                        src={src}
                         alt={this.state.alt} 
-                        onClick={() => this.updateColImage(this.state.src)}
                     />
                 </Fragment>
             );
@@ -53,10 +56,10 @@ class ImageLink extends React.Component {
     
 }
 
-ImageLink.propTypes = {
+// ImageLink.propTypes = {
     // id : PropTypes.key.isRequired,
     // src : PropTypes.string.isRequired,
     // alt : PropTypes.string.isRequired
-  };
+//   };
 
 export default withStyles(styles) (ImageLink);
