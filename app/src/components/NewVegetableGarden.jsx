@@ -46,37 +46,34 @@ class NewVegetableGarden extends React.Component {
         };
     }
 
-      handleClickOpen = (imageId) => {
-        this.setState({
-            openVegDialog: true,
-            selectedImageId:imageId
-        });
-      };
-    
-      handleClose = value => {
-        this.setState({ 
-            selectedValue: value,
-            openVegDialog: false,
-            });
-            console.log("selectedValue is:",value);
-            console.log('selectedImageId is ',this.state.selectedImageId);
-            this.updateImage(this.state.selectedImageId);
-        
+    handleClickOpen = (imageId) => {
+      this.setState({
+          openVegDialog: true,
+          selectedImageId:imageId
+      });
+    };
 
-      };
+    handleClose = value => {
+      this.setState({ 
+          selectedValue: value,
+          openVegDialog: false,
+          });
+          console.log("selectedValue is:",value);
+          console.log('selectedImageId is ',this.state.selectedImageId);
+          this.updateImage(this.state.selectedImageId);
+          //TO DO : try with component did update
+          //We always get the previous state
+    }
 
-    updateImage = (element,src) => {
-        // document.getElementById(element).src = this.state.selectedValue;
+    updateImage = (element) => {
         console.log("element to search :",element);
         if(this.state.selectedValue) {
             document.getElementById(element).src = this.state.selectedValue;
             console.log('new src is :',  document.getElementById(element).src);
         }
-
-
     }
 
-      onAddLine = () => {
+    onAddLine = () => {
         this.setState({
             numLine: this.state.numLine + 1
         });
