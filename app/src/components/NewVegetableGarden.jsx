@@ -60,10 +60,14 @@ class NewVegetableGarden extends React.Component {
           });
           console.log("selectedValue is:",value);
           console.log('selectedImageId is ',this.state.selectedImageId);
-          this.updateImage(this.state.selectedImageId);
-          //TO DO : try with component did update
-          //We always get the previous state
     }
+
+    componentDidUpdate(prevProps, prevState) {
+        //TO DO : Manage case when nothing clicked by the user onDialogClose
+        if (prevState.selectedImageId) {
+            this.updateImage(this.state.selectedImageId);
+        }
+      }
 
     updateImage = (element) => {
         console.log("element to search :",element);
@@ -129,55 +133,55 @@ class NewVegetableGarden extends React.Component {
                 <div key={i} >
                 <GridList className={classes.gridList} cols={12}>
                     <GridListTile cols={2}>
-                    <Button onClick={() => {this.handleClickOpen('img1row'+i+1)}}  >                        
+                    <Button onClick={() => {this.handleClickOpen('img1row'+i)}}  >                        
                         <ImageLink
                             className={classes.imageLink}
-                            id={'img1row'+i+1}
+                            id={'img1row'+i}
                             src={ground}
                         />
                     </Button>
                     </GridListTile>
                     <GridListTile cols={2}>
-                    <Button onClick={() => {this.handleClickOpen('img2row'+i+1)}}>                        
+                    <Button onClick={() => {this.handleClickOpen('img2row'+i)}}>                        
                         <ImageLink
                             className={classes.imageLink} 
-                            id={'img2row'+i+1}
+                            id={'img2row'+i}
                             src={ground}
                         />
                     </Button>
                     </GridListTile>
                     <GridListTile cols={2}>
-                    <Button onClick={() => {this.handleClickOpen('img3row'+i+1)}}>                        
+                    <Button onClick={() => {this.handleClickOpen('img3row'+i)}}>                        
                         <ImageLink
                             className={classes.imageLink} 
-                            id={'img3row'+i+1}
+                            id={'img3row'+i}
                             src={ground}
                         />
                     </Button>
                     </GridListTile>
                     <GridListTile cols={2}>
-                    <Button onClick={() => {this.handleClickOpen('img4row'+i+1)}}>                        
+                    <Button onClick={() => {this.handleClickOpen('img4row'+i)}}>                        
                         <ImageLink
                             className={classes.imageLink} 
-                            id={'img4row'+i+1}
+                            id={'img4row'+i}
                             src={ground}
                         />
                     </Button>
                     </GridListTile>
                     <GridListTile cols={2}>
-                    <Button onClick={() => {this.handleClickOpen('img5row'+i+1)}}>                        
+                    <Button onClick={() => {this.handleClickOpen('img5row'+i)}}>                        
                         <ImageLink
                             className={classes.imageLink} 
-                            id={'img5row'+i+1}
+                            id={'img5row'+i}
                             src={ground}
                         />
                     </Button>
                     </GridListTile>
                     <GridListTile cols={2}>
-                    <Button onClick={() => {this.handleClickOpen('img6row'+i+1)}}>                        
+                    <Button onClick={() => {this.handleClickOpen('img6row'+i)}}>                        
                         <ImageLink
                             className={classes.imageLink} 
-                            id={'img6row'+i+1}
+                            id={'img6row'+i}
                             src={ground}
                         />
                     </Button>
