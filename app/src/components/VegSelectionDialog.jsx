@@ -32,7 +32,7 @@ class VegSelectionDialog extends React.Component {
       return (
           <Fragment>
         <Dialog onClose={this.handleClose} aria-labelledby="simple-dialog-title" {...other}>
-          <DialogTitle id="simple-dialog-title">Set backup account</DialogTitle>
+          <DialogTitle id="simple-dialog-title">Choisissez un légume à planter</DialogTitle>
             <List>
                 {vegList.map((vegetable, i) =>(
                     <ListItem 

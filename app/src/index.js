@@ -1,4 +1,4 @@
-//Import eact library
+//Import React library
 import React from 'react';
 //Import the virtual Dom
 import ReactDOM from 'react-dom';

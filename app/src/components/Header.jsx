@@ -65,7 +65,7 @@ return(
 
                 </IconButton>
                 <Typography variant="title" color="inherit" className={classes.flex}>
-                    Title
+                    Créer un plan de potager
             </Typography>
 
                 <Drawer open={this.state.openDrawer} onClose={this.untoggleDrawer}>
