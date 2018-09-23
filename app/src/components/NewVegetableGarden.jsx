@@ -1,34 +1,31 @@
 import React, { Fragment } from "react";
 import { withStyles } from "@material-ui/core/styles";
-import { Button, Grid, GridList, GridListTile } from "@material-ui/core";
+import { Button, Grid } from "@material-ui/core";
+// import { Button, Grid, GridList, GridListTile } from "@material-ui/core";
 import Icon from "@material-ui/core/Icon";
 
 import VegSelectionDialog from "./VegSelectionDialog";
-import ImageLink from "./ImageLink.jsx";
-
-//Import the images used o display the vegetable icons
-import tomatImg from "../ico_img/icons8-tomate-48.png";
-import carotImg from "../ico_img/icons8-carotte-48.png";
-import auberImg from "../ico_img/icons8-aubergine-48.png";
-import radisImg from "../ico_img/icons8-radis-48.png";
-import ground from "../ico_img/icons8-vagues-filled-50.png";
+import Lines from "./Lines";
 
 const styles = {
-  gridList: {
-    width: "100%",
-    height: "10vh",
-    overflow: "hidden"
-  },
   grid: {
     justifyContent: "center",
     alignItems: "center"
   },
-  imageLink: {},
-  buttonGrid:{
-
+  buttonGrid: {
+    position: "fixed",
+    bottom: 0,
+    right: 0,
+    marginRight: "2%",
+    marginBottom: "2%"
+  },
+  addButton: {
+    color: "red"
+  },
+  deleteButton: {
+    backgroundColor: "yellow"
   }
 };
-
 class NewVegetableGarden extends React.Component {
   constructor(props) {
     super(props);
@@ -36,26 +33,10 @@ class NewVegetableGarden extends React.Component {
       openVegDialog: false,
       id: "",
       selectedValue: "",
-      numLine: 0,
+      numLine: [0],
       selectedImageId: ""
     };
   }
-
-  handleClickOpen = imageId => {
-    this.setState({
-      openVegDialog: true,
-      selectedImageId: imageId
-    });
-  };
-
-  handleClose = value => {
-    this.setState({
-      selectedValue: value,
-      openVegDialog: false
-    });
-    console.log("selectedValue is:", value);
-    console.log("selectedImageId is ", this.state.selectedImageId);
-  };
 
   componentDidUpdate(prevProps, prevState) {
     //TO DO : Manage case when nothing clicked by the user onDialogClose
@@ -68,6 +49,23 @@ class NewVegetableGarden extends React.Component {
     }
   }
 
+  handleClickImage = imageId => {
+    console.log(imageId);
+    this.setState({
+      openVegDialog: true,
+      selectedImageId: imageId
+    });
+  };
+
+  handleCloseDialog = value => {
+    this.setState({
+      selectedValue: value,
+      openVegDialog: false
+    });
+    console.log("selectedValue is:", value);
+    console.log("selectedImageId is ", this.state.selectedImageId);
+  };
+
   updateImage = element => {
     console.log("element to search :", element);
     if (this.state.selectedValue) {
@@ -77,169 +75,58 @@ class NewVegetableGarden extends React.Component {
   };
 
   onAddLine = () => {
+    console.log("this.state.numLine", this.state.numLine);
+    let lines = this.state.numLine;
+    let length = this.state.numLine.length;
+    lines.push(length);
     this.setState({
-      numLine: this.state.numLine + 1
+      numLine: lines
     });
   };
 
   onRemoveLine = () => {
+    let lines = this.state.numLine;
+    console.log("lines remove", lines);
+    let length = this.state.numLine.length - 1;
+    let slice = lines.slice(0, length);
     this.setState({
-      numLine: this.state.numLine - 1
+      numLine: slice
     });
   };
 
   render() {
-    // Temporary array of vegetable objects, to be removed when backend exists
-    const vegetables = [
-      {
-        id: 1,
-        name: "tomate",
-        img: tomatImg,
-        src: "../ico_img/icons8-tomate-48.png"
-      },
-      {
-        id: 2,
-        name: "carotte",
-        img: carotImg,
-        src: "../ico_img/icons8-carotte-48.png"
-      },
-      {
-        id: 3,
-        name: "aubergine",
-        img: auberImg,
-        src: "../ico_img/icons8-aubergine-48.png"
-      },
-      {
-        id: 4,
-        name: "radis",
-        img: radisImg,
-        src: "../ico_img/icons8-radis-48.png"
-      }
-    ];
-
-    const { classes } = this.props;
-
-    const removeButton = (
-      <Button onClick={() => this.onRemoveLine()}>
-      <Icon color="primary">
-              remove_circle
-            </Icon>
-      </Button>
-    );
-
-    const newLines = [];
-
-    for (let i = 0; i < this.state.numLine; i += 1) {
-      console.log("ligne n°", this.state.numLine);
-      newLines.push(
-        <div key={i}>
-          <GridList className={classes.gridList} cols={12}>
-            <GridListTile cols={2}>
-              <Button
-                onClick={() => {
-                  this.handleClickOpen("img1row" + i);
-                }}
-              >
-                <ImageLink
-                  className={classes.imageLink}
-                  id={"img1row" + i}
-                  src={ground}
-                />
-              </Button>
-            </GridListTile>
-            <GridListTile cols={2}>
-              <Button
-                onClick={() => {
-                  this.handleClickOpen("img2row" + i);
-                }}
-              >
-                <ImageLink
-                  className={classes.imageLink}
-                  id={"img2row" + i}
-                  src={ground}
-                />
-              </Button>
-            </GridListTile>
-            <GridListTile cols={2}>
-              <Button
-                onClick={() => {
-                  this.handleClickOpen("img3row" + i);
-                }}
-              >
-                <ImageLink
-                  className={classes.imageLink}
-                  id={"img3row" + i}
-                  src={ground}
-                />
-              </Button>
-            </GridListTile>
-            <GridListTile cols={2}>
-              <Button
-                onClick={() => {
-                  this.handleClickOpen("img4row" + i);
-                }}
-              >
-                <ImageLink
-                  className={classes.imageLink}
-                  id={"img4row" + i}
-                  src={ground}
-                />
-              </Button>
-            </GridListTile>
-            <GridListTile cols={2}>
-              <Button
-                onClick={() => {
-                  this.handleClickOpen("img5row" + i);
-                }}
-              >
-                <ImageLink
-                  className={classes.imageLink}
-                  id={"img5row" + i}
-                  src={ground}
-                />
-              </Button>
-            </GridListTile>
-            <GridListTile cols={2}>
-              <Button
-                onClick={() => {
-                  this.handleClickOpen("img6row" + i);
-                }}
-              >
-                <ImageLink
-                  className={classes.imageLink}
-                  id={"img6row" + i}
-                  src={ground}
-                />
-              </Button>
-            </GridListTile>
-          </GridList>
-          <br />
-        </div>
-      );
-    }
+    const { classes, vegetables } = this.props;
+    const { numLine } = this.state;
 
     return (
       <Fragment>
         <Grid container className={classes.grid}>
-        <Grid item xs={9}>
-        {newLines}
-        </Grid>
-        <Grid item xs={3}>
-        <Grid container className={classes.buttonGrid} direction="row" justify="flex-end" alignItems="flex-end">
-        <Button onClick={() => this.onAddLine()}>
-            <Icon color="secondary">
-              add_circle
-            </Icon>
-          </Button>
-          {this.state.numLine > 0 ? removeButton : null}
-        </Grid>
-        </Grid>
-
+          <Grid item xs={9}>
+            <Lines numLine={numLine} handleClickImage={this.handleClickImage} />
+          </Grid>
+          <Grid item xs={3}>
+            <Grid
+              container
+              className={classes.buttonGrid}
+              direction="column"
+              justify="flex-end"
+              alignItems="flex-end"
+            >
+              <Button onClick={this.onAddLine}>
+                <Icon className={classes.addButon}>add_circle</Icon>
+              </Button>
+              {this.state.numLine.length > 1 ? (
+                <Button onClick={() => this.onRemoveLine()}>
+                  <Icon className={classes.deleteButon}>remove_circle</Icon>
+                </Button>
+              ) : null}
+            </Grid>
+          </Grid>
         </Grid>
 
         <VegSelectionDialog
           open={this.state.openVegDialog}
-          onClose={this.handleClose}
+          onClose={this.handleCloseDialog}
           vegList={vegetables}
         />
       </Fragment>
