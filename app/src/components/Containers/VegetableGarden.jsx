@@ -4,8 +4,8 @@ import { Button, Grid } from "@material-ui/core";
 // import { Button, Grid, GridList, GridListTile } from "@material-ui/core";
 import Icon from "@material-ui/core/Icon";
 
-import VegSelectionDialog from "./VegSelectionDialog";
-import Lines from "./Lines";
+import VegSelectionDialog from "../GardenComponents/VegSelectionDialog";
+import Lines from "../GardenComponents/Lines";
 
 const styles = {
   grid: {
@@ -24,7 +24,7 @@ const styles = {
   },
   deleteButton: {}
 };
-class NewVegetableGarden extends React.Component {
+class VegetableGarden extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -144,4 +144,4 @@ class NewVegetableGarden extends React.Component {
   }
 }
 
-export default withStyles(styles)(NewVegetableGarden);
+export default withStyles(styles)(VegetableGarden);

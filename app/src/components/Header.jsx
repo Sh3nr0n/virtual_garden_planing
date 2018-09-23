@@ -3,7 +3,6 @@
 //To Do: Add the href in the SideNavItem when pages are developped
 //######################
 import React from 'react';
-// import logo from './logo.svg';
 import PropTypes from 'prop-types';
 import Drawer from '@material-ui/core/Drawer';
 import ListItem from '@material-ui/core/ListItem';

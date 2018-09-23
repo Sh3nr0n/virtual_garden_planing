@@ -2,7 +2,7 @@ import React, { Fragment, Component } from "react";
 import PropTypes from "prop-types";
 import { withStyles } from "@material-ui/core/styles";
 import { GridList, GridListTile } from "@material-ui/core";
-import ground from "../ico_img/icons8-herbe-48.png";
+import ground from "../../images/VegIcons/icons8-herbe-48.png";
 
 const styles = {
   gridList: {
