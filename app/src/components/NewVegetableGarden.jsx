@@ -20,62 +20,66 @@ const styles = {
     marginBottom: "2%"
   },
   addButton: {
-    color: "red"
+    color: "green"
   },
-  deleteButton: {
-    backgroundColor: "yellow"
-  }
+  deleteButton: {}
 };
 class NewVegetableGarden extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       openVegDialog: false,
-      id: "",
       selectedValue: "",
       numLine: [0],
       selectedImageId: ""
+      // imageClicked: false
     };
   }
 
   componentDidUpdate(prevProps, prevState) {
-    //TO DO : Manage case when nothing clicked by the user onDialogClose
-    if (prevState.selectedImageId) {
-      if (this.state.numLine === 0) {
-        console.log("no icon image to update");
-      } else {
+    if (prevState.selectedImageId && this.state.selectedValue) {
         this.updateImage(this.state.selectedImageId);
-      }
+        this.setState({
+          selectedValue: ""
+        });
     }
   }
 
   handleClickImage = imageId => {
-    console.log(imageId);
     this.setState({
       openVegDialog: true,
       selectedImageId: imageId
     });
   };
 
-  handleCloseDialog = value => {
+  handleCloseDialog = () => {
+    this.setState({
+      openVegDialog: false
+    });
+  };
+
+  handleClickDialog = (value, click) => {
     this.setState({
       selectedValue: value,
       openVegDialog: false
+      // imageClicked: click
     });
-    console.log("selectedValue is:", value);
-    console.log("selectedImageId is ", this.state.selectedImageId);
+    this.updateImage(this.state.selectedImageId);
+
+    // console.log("handleOpenDialog selectedValue is : %s, openVegDialog is : %s, imageClicked is : %s ", value, this.state.openVegDialog, click);
+    // console.log("selectedImageId is ", this.state.selectedImageId);
   };
 
   updateImage = element => {
-    console.log("element to search :", element);
-    if (this.state.selectedValue) {
-      document.getElementById(element).src = this.state.selectedValue;
-      console.log("new src is :", document.getElementById(element).src);
-    }
+    // console.log("element to search :", element);
+    // if (this.state.selectedValue) {
+    document.getElementById(element).src = this.state.selectedValue;
+    // console.log("new src is :", document.getElementById(element).src);
+    // }
   };
 
   onAddLine = () => {
-    console.log("this.state.numLine", this.state.numLine);
+    // console.log("this.state.numLine", this.state.numLine);
     let lines = this.state.numLine;
     let length = this.state.numLine.length;
     lines.push(length);
@@ -86,7 +90,7 @@ class NewVegetableGarden extends React.Component {
 
   onRemoveLine = () => {
     let lines = this.state.numLine;
-    console.log("lines remove", lines);
+    // console.log("lines remove", lines);
     let length = this.state.numLine.length - 1;
     let slice = lines.slice(0, length);
     this.setState({
@@ -96,7 +100,10 @@ class NewVegetableGarden extends React.Component {
 
   render() {
     const { classes, vegetables } = this.props;
-    const { numLine } = this.state;
+    const { numLine, openVegDialog } = this.state;
+    // console.log("Parent props",this.props)
+
+    console.log("Parent state", this.state);
 
     return (
       <Fragment>
@@ -113,11 +120,13 @@ class NewVegetableGarden extends React.Component {
               alignItems="flex-end"
             >
               <Button onClick={this.onAddLine}>
-                <Icon className={classes.addButon}>add_circle</Icon>
+                <Icon className={classes.addButton}>add_circle</Icon>
               </Button>
               {this.state.numLine.length > 1 ? (
                 <Button onClick={() => this.onRemoveLine()}>
-                  <Icon className={classes.deleteButon}>remove_circle</Icon>
+                  <Icon className={classes.icon} color="action">
+                    remove_circle
+                  </Icon>
                 </Button>
               ) : null}
             </Grid>
@@ -125,8 +134,9 @@ class NewVegetableGarden extends React.Component {
         </Grid>
 
         <VegSelectionDialog
-          open={this.state.openVegDialog}
+          open={openVegDialog}
           onClose={this.handleCloseDialog}
+          handleClick={this.handleClickDialog}
           vegList={vegetables}
         />
       </Fragment>

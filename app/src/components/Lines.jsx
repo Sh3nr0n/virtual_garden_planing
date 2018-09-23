@@ -1,4 +1,5 @@
 import React, { Fragment, Component } from "react";
+import PropTypes from "prop-types";
 import { withStyles } from "@material-ui/core/styles";
 import { GridList, GridListTile } from "@material-ui/core";
 import ground from "../ico_img/icons8-herbe-48.png";
@@ -36,9 +37,9 @@ class Lines extends Component {
                 id={"img1row" + lineRank}
                 src={ground}
                 alt={"ground"}
-                onClick={() => {
-                  this.handleClickOpen("img1row" + lineRank);
-                }}
+                onClick={() => 
+                  this.handleClickOpen("img1row" + lineRank)
+                }
               />
             </GridListTile>
             <GridListTile cols={2}>
@@ -103,5 +104,10 @@ class Lines extends Component {
     });
   }
 }
+
+Lines.propTypes = {
+  numline: PropTypes.array,
+  handleClickImage: PropTypes.func.isRequired,
+};
 
 export default withStyles(styles)(Lines);

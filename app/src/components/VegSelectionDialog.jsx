@@ -9,28 +9,28 @@ import DialogTitle from "@material-ui/core/DialogTitle";
 import Dialog from "@material-ui/core/Dialog";
 
 const styles = {
-  styleToCreate: {}
-};
+  // style settings here
+}
 
 class VegSelectionDialog extends React.Component {
+  
   handleClose = () => {
-    this.props.onClose(this.props.selectedValue);
+    this.props.onClose(this.props.openVegDialog);
   };
 
-  handleListItemClick = value => {
-    this.props.onClose(value);
-    console.log("VegSelectionDialog vegetable.name is:", value);
+  handleClickItem = value => {
+    this.props.handleClick(value);
   };
 
   render() {
-    const { vegList, classes, onClose, selectedValue, ...other } = this.props;
+    const { vegList,open } = this.props;
 
     return (
       <Fragment>
         <Dialog
+          open = {open}
           onClose={this.handleClose}
           aria-labelledby="simple-dialog-title"
-          {...other}
         >
           <DialogTitle id="simple-dialog-title">
             Choisissez un légume à planter
@@ -39,7 +39,7 @@ class VegSelectionDialog extends React.Component {
             {vegList.map((vegetable, i) => (
               <ListItem
                 button
-                onClick={() => this.handleListItemClick(vegetable.img)}
+                onClick={() => this.handleClickItem(vegetable.img)}
                 key={i}
               >
                 <ListItemText primary={vegetable.name} />
@@ -58,9 +58,10 @@ class VegSelectionDialog extends React.Component {
 }
 
 VegSelectionDialog.propTypes = {
-  classes: PropTypes.object.isRequired,
-  onClose: PropTypes.func,
-  selectedValue: PropTypes.string
+  open: PropTypes.bool,
+  onClose: PropTypes.func.isRequired,
+  handleClick : PropTypes.func.isRequired,
+  vegList: PropTypes.array.isRequired,
 };
 
 export default withStyles(styles)(VegSelectionDialog);
