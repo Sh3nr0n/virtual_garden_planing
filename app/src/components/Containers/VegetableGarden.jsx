@@ -7,6 +7,12 @@ import Icon from "@material-ui/core/Icon";
 import VegSelectionDialog from "../GardenComponents/VegSelectionDialog";
 import Lines from "../GardenComponents/Lines";
 
+//Import the images used to display the vegetable icons
+import tomatImg from "../../images/VegIcons/icons8-tomate-48.png";
+import carotImg from "../../images/VegIcons/icons8-carotte-48.png";
+import auberImg from "../../images/VegIcons/icons8-aubergine-48.png";
+import radisImg from "../../images/VegIcons/icons8-radis-48.png";
+
 const styles = {
   grid: {
     justifyContent: "center",
@@ -99,7 +105,34 @@ class VegetableGarden extends React.Component {
   };
 
   render() {
-    const { classes, vegetables } = this.props;
+
+// Temporary array of vegetable objects, to be removed when backend exists
+// Note : replace src property in "VegSelectionDialog" with correct file url when app goes online
+
+const vegetables = [
+  {
+    id: 1,
+    name: "tomate",
+    img: tomatImg
+  },
+  {
+    id: 2,
+    name: "carotte",
+    img: carotImg
+  },
+  {
+    id: 3,
+    name: "aubergine",
+    img: auberImg
+  },
+  {
+    id: 4,
+    name: "radis",
+    img: radisImg
+  }
+];
+
+    const { classes } = this.props;
     const { numLine, openVegDialog } = this.state;
     // console.log("Parent props",this.props)
 
