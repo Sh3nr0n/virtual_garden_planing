@@ -60,7 +60,7 @@ class Header extends React.Component {
             <MenuIcon />
           </IconButton>
           <Typography variant="title" color="inherit" className={classes.flex}>
-            Créer un plan de potager
+            {this.props.title}
           </Typography>
 
           <Drawer open={this.state.openDrawer} onClose={this.untoggleDrawer}>

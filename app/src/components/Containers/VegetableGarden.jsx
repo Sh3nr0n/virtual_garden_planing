@@ -1,6 +1,8 @@
 import React, { Fragment } from "react";
 import { withStyles } from "@material-ui/core/styles";
 import { Button, Grid } from "@material-ui/core";
+import Header from "../Header";
+
 // import { Button, Grid, GridList, GridListTile } from "@material-ui/core";
 import Icon from "@material-ui/core/Icon";
 
@@ -140,6 +142,8 @@ const vegetables = [
 
     return (
       <Fragment>
+      <Header title = {'Créer un plan de potager'} />
+
         <Grid container className={classes.grid}>
           <Grid item xs={9}>
             <Lines numLine={numLine} handleClickImage={this.handleClickImage} />
